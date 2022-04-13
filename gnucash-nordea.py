@@ -42,11 +42,11 @@ def handle_file(file_path):
 
             # Check if it is a withtrawal (Also remove '-' in front of the number)
             if parts[1][0] == "-":
-                new_line = f"{parts[0]};;{parts[1][1:]}:{parts[5]}"
+                new_line = f"{parts[0]};;{parts[1][1:]};{parts[5]}"
 
             # If not, then it is a deposit
             else:
-                new_line = f"{parts[0]};{parts[1]};:{parts[5]}"
+                new_line = f"{parts[0]};{parts[1]};;{parts[5]}"
 
             reverse_list.append(new_line)
 
