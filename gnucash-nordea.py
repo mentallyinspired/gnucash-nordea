@@ -31,7 +31,7 @@ def handle_file(file_path):
     desc = "Date;Deposit;Withdrawal;Description"
 
     # List for reversing the transaction order in csv file
-    reverse_list = list()
+    csv_list = list()
 
     # Open the file with utf-8 encoding
     with open(file_path, mode='r', encoding='utf-8') as f:
@@ -48,23 +48,22 @@ def handle_file(file_path):
             else:
                 new_line = f"{parts[0]};{parts[1]};;{parts[5]}"
 
-            reverse_list.append(new_line)
-
-    # Reverse the list
-    reverse_list.reverse()
+            csv_list.append(new_line)
+            
+    # Remove old csv column description
+    csv_list.pop(0)
     
     # Insert description of csv columns
-    reverse_list.insert(0, desc)
+    csv_list.insert(0, desc)
     
-    # Remove old csv column description
-    reverse_list.pop(-1)
+
 
     # Remove old file
     os.remove(file_path)
 
     # Create new file with same name and write reverse order to it
     with open(file_path, mode='w', encoding='utf-8') as f:
-        for line in reverse_list:
+        for line in csv_list:
             f.write(line + "\n")
 
 
@@ -84,7 +83,3 @@ elif args.dir and args.dir.is_dir():
 else:
     print("Invalid path")
     sys.exit()
-
-
-
-
