@@ -78,7 +78,7 @@ def handle_dir():
 
 
 if args.file and args.file.is_file():
-    handle_file()
+    handle_file(args.file)
 elif args.dir and args.dir.is_dir():
     handle_dir()
 else:
